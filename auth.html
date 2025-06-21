@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focusly – Login / Sign Up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <div class="auth-bg-visuals" aria-hidden="true">
+    <div class="auth-blob blob1"></div>
+    <div class="auth-blob blob2"></div>
+    <div class="auth-dot dot1"></div>
+    <div class="auth-dot dot2"></div>
+    <div class="auth-dot dot3"></div>
+    <svg class="auth-shape shape1" viewBox="0 0 200 200"><circle cx="100" cy="100" r="100" fill="#a3d8f4" fill-opacity="0.13"/></svg>
+    <svg class="auth-shape shape2" viewBox="0 0 180 180"><rect x="0" y="0" width="180" height="180" rx="90" fill="#ffd6e0" fill-opacity="0.10"/></svg>
+  </div>
+  <main class="auth-container">
+    <div class="auth-card frosted glass">
+      <div class="auth-tabs-toggle">
+        <button class="tab active" id="login-tab" type="button">Login</button>
+        <button class="tab" id="signup-tab" type="button">Sign Up</button>
+        <div class="tab-slider" id="tab-slider"></div>
+      </div>
+      <div class="auth-headlines">
+        <h2 class="form-headline" id="login-headline">Welcome Back</h2>
+        <h2 class="form-headline" id="signup-headline" style="display:none;">Create Account</h2>
+        <div class="form-subheading" id="login-subheading">Log in to your Focusly account to continue your productivity journey.</div>
+        <div class="form-subheading" id="signup-subheading" style="display:none;">Sign up and unlock all-in-one tools for smarter studying.</div>
+      </div>
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-username">Username</label>
+          <input type="text" id="login-username" name="username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="auth-btn">Login</button>
+        <div class="form-message" id="login-message"></div>
+      </form>
+      <form id="signup-form" class="auth-form" style="display:none;">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="signup-firstname">First Name</label>
+            <input type="text" id="signup-firstname" name="first_name" required autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label for="signup-lastname">Last Name</label>
+            <input type="text" id="signup-lastname" name="last_name" required autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="signup-email">Email</label>
+          <input type="email" id="signup-email" name="email" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="signup-username">Username</label>
+          <input type="text" id="signup-username" name="username" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" required autocomplete="new-password">
+        </div>
+        <button type="submit" class="auth-btn">Sign Up</button>
+        <div class="form-message" id="signup-message"></div>
+      </form>
+    </div>
+  </main>
+  <script>
+    // Tab switching with animated slider and headline swap
+    const loginTab = document.getElementById('login-tab');
+    const signupTab = document.getElementById('signup-tab');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const tabSlider = document.getElementById('tab-slider');
+    const loginHeadline = document.getElementById('login-headline');
+    const signupHeadline = document.getElementById('signup-headline');
+    const loginSubheading = document.getElementById('login-subheading');
+    const signupSubheading = document.getElementById('signup-subheading');
+    function switchTab(tab) {
+      if (tab === 'login') {
+        loginTab.classList.add('active');
+        signupTab.classList.remove('active');
+        loginForm.style.display = '';
+        signupForm.style.display = 'none';
+        loginHeadline.style.display = '';
+        signupHeadline.style.display = 'none';
+        loginSubheading.style.display = '';
+        signupSubheading.style.display = 'none';
+        tabSlider.style.transform = 'translateX(0)';
+      } else {
+        signupTab.classList.add('active');
+        loginTab.classList.remove('active');
+        signupForm.style.display = '';
+        loginForm.style.display = 'none';
+        signupHeadline.style.display = '';
+        loginHeadline.style.display = 'none';
+        signupSubheading.style.display = '';
+        loginSubheading.style.display = 'none';
+        tabSlider.style.transform = 'translateX(100%)';
+      }
+    }
+    loginTab.addEventListener('click', () => switchTab('login'));
+    signupTab.addEventListener('click', () => switchTab('signup'));
+    // Set initial slider width and position
+    window.addEventListener('DOMContentLoaded', () => {
+      tabSlider.style.width = loginTab.offsetWidth + 'px';
+      tabSlider.style.left = loginTab.offsetLeft + 'px';
+    });
+    // Responsive slider width
+    window.addEventListener('resize', () => {
+      if (loginTab.classList.contains('active')) {
+        tabSlider.style.width = loginTab.offsetWidth + 'px';
+        tabSlider.style.left = loginTab.offsetLeft + 'px';
+      } else {
+        tabSlider.style.width = signupTab.offsetWidth + 'px';
+        tabSlider.style.left = signupTab.offsetLeft + 'px';
+      }
+    });
+    // Login form submit
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const message = document.getElementById('login-message');
+      message.textContent = '';
+      try {
+        const res = await fetch('http://localhost:8000/api/auth/token/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          message.textContent = 'Login successful!';
+          message.className = 'form-message success';
+        } else {
+          message.textContent = data.detail || 'Login failed.';
+          message.className = 'form-message error';
+        }
+      } catch (err) {
+        message.textContent = 'Network error. Please try again.';
+        message.className = 'form-message error';
+      }
+    });
+    // Signup form submit
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const first_name = document.getElementById('signup-firstname').value;
+      const last_name = document.getElementById('signup-lastname').value;
+      const email = document.getElementById('signup-email').value;
+      const username = document.getElementById('signup-username').value;
+      const password = document.getElementById('signup-password').value;
+      const message = document.getElementById('signup-message');
+      message.textContent = '';
+      try {
+        const res = await fetch('http://localhost:8000/api/auth/register/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, first_name, last_name, email })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          message.textContent = 'Sign up successful! You can now log in.';
+          message.className = 'form-message success';
+        } else {
+          message.textContent = data.detail || 'Sign up failed.';
+          message.className = 'form-message error';
+        }
+      } catch (err) {
+        message.textContent = 'Network error. Please try again.';
+        message.className = 'form-message error';
+      }
+    });
+  </script>
+</body>
+</html> 
