@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // localStorage.setItem('access_token', '1234567890');
+    // localStorage.setItem('refresh_token', '1234567890');
+    // --- Authentication Check ---
+    const accessToken = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+    
+    if (!accessToken || !refreshToken) {
+        window.location.href = 'auth.html';
+        return;
+    }
+
     // --- View Switching ---
     const navDashboard = document.getElementById('nav-dashboard');
     const navTasks = document.getElementById('nav-tasks');
