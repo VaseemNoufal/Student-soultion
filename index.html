@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Focusly – The Ultimate Student Productivity Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="background-decor" aria-hidden="true">
+    <div class="decor-dot dot1"></div>
+    <div class="decor-dot dot2"></div>
+    <div class="decor-dot dot3"></div>
+    <div class="decor-dot dot4"></div>
+    <svg class="wave" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,80 C360,160 1080,0 1440,80 L1440,120 L0,120 Z" fill="#a3d8f4" fill-opacity="0.18"/>
+      <path d="M0,100 C400,60 1040,180 1440,60 L1440,120 L0,120 Z" fill="#ffd6e0" fill-opacity="0.13"/>
+      <path d="M0,90 C500,140 900,20 1440,100 L1440,120 L0,120 Z" fill="#bdb2ff" fill-opacity="0.10"/>
+    </svg>
+  </div>
+  <header class="navbar">
+    <div class="logo">🎓 Focusly</div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="auth.html#login" class="btn login">Login</a>
+      <a href="auth.html#signup" class="btn signup">Sign Up</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <button class="close-mobile-menu" id="closeMobileMenu" aria-label="Close menu">
+          <span class="close-x"><span></span><span></span></span>
+        </button>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#about">About</a>
+        <a href="auth.html#login" class="btn login">Login</a>
+        <a href="auth.html#signup" class="btn signup">Sign Up</a>
+      </div>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="headline"><span id="typing">Master Your Student Life with Focusly</span></h1>
+      <p class="subheading">Timetables, tasks, notes, and more — all in one place.</p>
+      <div class="cta-buttons">
+        <button class="btn cta primary">Get Started Free</button>
+        <button class="btn cta secondary">Try Demo</button>
+      </div>
+      <div class="floating-icons">
+        <span class="icon timetable" title="Timetable">📅</span>
+        <span class="icon tasks" title="Tasks">✅</span>
+        <span class="icon music" title="Focus Music">🎵</span>
+        <span class="icon flashcards" title="Flashcards">🃏</span>
+        <span class="icon checklist" title="Checklist">📝</span>
+      </div>
+    </div>
+    <div class="hero-image">
+      <!-- Animated SVG mockup of a student dashboard card with floating icons -->
+      <svg class="dashboard-mockup" width="320" height="240" viewBox="0 0 320 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Card background -->
+        <rect x="24" y="32" width="272" height="176" rx="28" fill="#F5F7FB" filter="url(#shadow)"/>
+        <!-- Header bar -->
+        <rect x="44" y="52" width="232" height="28" rx="10" fill="#A3D8F4"/>
+        <!-- Calendar icon (floating) -->
+        <g class="svg-float svg-float1">
+          <rect x="60" y="100" width="44" height="44" rx="12" fill="#fff" stroke="#3a86ff" stroke-width="2"/>
+          <rect x="70" y="110" width="24" height="18" rx="4" fill="#A3D8F4"/>
+          <rect x="70" y="132" width="24" height="6" rx="2" fill="#e0ecfc"/>
+          <circle cx="82" cy="116" r="2" fill="#3a86ff"/>
+          <circle cx="82" cy="138" r="2" fill="#3a86ff"/>
+        </g>
+        <!-- Checklist icon (floating) -->
+        <g class="svg-float svg-float2">
+          <rect x="138" y="110" width="44" height="44" rx="12" fill="#fff" stroke="#B6E2A1" stroke-width="2"/>
+          <rect x="148" y="120" width="24" height="6" rx="2" fill="#B6E2A1"/>
+          <rect x="148" y="132" width="16" height="6" rx="2" fill="#e0ecfc"/>
+          <circle cx="154" cy="123" r="2" fill="#B6E2A1"/>
+          <circle cx="154" cy="135" r="2" fill="#B6E2A1"/>
+        </g>
+        <!-- Flashcards icon (floating) -->
+        <g class="svg-float svg-float3">
+          <rect x="216" y="100" width="44" height="44" rx="12" fill="#fff" stroke="#FFD6E0" stroke-width="2"/>
+          <rect x="226" y="110" width="24" height="14" rx="3" fill="#FFD6E0"/>
+          <rect x="226" y="128" width="24" height="6" rx="2" fill="#e0ecfc"/>
+          <circle cx="238" cy="116" r="2" fill="#FFD6E0"/>
+          <circle cx="238" cy="132" r="2" fill="#FFD6E0"/>
+        </g>
+        <defs>
+          <filter id="shadow" x="0" y="0" width="320" height="240" filterUnits="userSpaceOnUse">
+            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#3a86ff" flood-opacity="0.08"/>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+    <a href="#benefits-section" class="scroll-arrow" aria-label="Scroll to next section">
+      <span>&#8595;</span>
+    </a>
+  </section>
+  <section id="benefits-section">
+    <h2 class="benefits-title">Why Students Love Focusly</h2>
+    <div class="benefits-cards">
+      <div class="benefit-card">
+        <div class="benefit-icon" style="color:#3a86ff;">🎯</div>
+        <h3 class="benefit-heading">Smarter Studying</h3>
+        <p class="benefit-desc">Work smarter, not harder. Focusly helps you optimize study time and stay on track.</p>
+        <a href="#" class="benefit-link">Learn More &rarr;</a>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="color:#bdb2ff;">📅</div>
+        <h3 class="benefit-heading">Better Organization</h3>
+        <p class="benefit-desc">Timetables, tasks, and exams — all in one dashboard, always in sync.</p>
+        <a href="#" class="benefit-link">Learn More &rarr;</a>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="color:#4ecdc4;">💡</div>
+        <h3 class="benefit-heading">Enhanced Productivity</h3>
+        <p class="benefit-desc">With Focus Mode and reminders, you'll never miss what matters.</p>
+        <a href="#" class="benefit-link">Learn More &rarr;</a>
+      </div>
+    </div>
+  </section>
+  <script>
+    // Typing effect for headline
+    const text = "Master Your Student Life with Focusly";
+    const typing = document.getElementById('typing');
+    let i = 0;
+    typing.textContent = "";
+    function type() {
+      if (i < text.length) {
+        typing.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 30);
+      }
+    }
+    type();
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMobileMenu = document.getElementById('closeMobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    });
+    closeMobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+  <script>
+    window.ChatboxSettings = {
+      themecolor: "#3a86ff",
+      txtcolor: "",
+      welcomemsg: "Welcome to Focusly, How can we help you today?",
+      position: "right",
+      companyInfo: "Focusly is a modern, student-first productivity platform designed to simplify and streamline academic life. Founded in 2025 by Vaseem Noufal, Muhammed Yaseen VM and Yadhav Sreekand in India, Focusly brings together everything a student needs to stay organized and succeed — from smart timetables and task tracking to flashcards, focus timers, and study tools — all in one place. Our mission is to help students build better habits, stay focused, and study smarter, not harder. With a sleek interface, AI-powered features, and a growing ecosystem of tools, Focusly is more than just an app — it's a complete academic companion built for the modern learner. We are a remote-first company dedicated to creating meaningful, accessible solutions for students everywhere. ", //Give Your Company Info
+    }; </script>
+  <script src="https://vaseemschatbox.vercel.app/finale.js"></script>
+</body>
+</html> 

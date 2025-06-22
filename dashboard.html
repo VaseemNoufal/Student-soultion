@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focusly – Student Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">🎓 Focusly</div>
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                    <span class="icon-arrow"></span>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="active" id="nav-dashboard"><span><i class="icon">🏠</i></span><span class="nav-text">Dashboard</span></a></li>
+                    <li><a href="#" id="nav-tasks"><span><i class="icon">📝</i></span><span class="nav-text">Tasks</span></a></li>
+                    <li><a href="#"><span><i class="icon">📅</i></span><span class="nav-text">Calendar</span></a></li>
+                    <li><a href="#"><span><i class="icon">📚</i></span><span class="nav-text">Activities</span></a></li>
+                    <li><a href="#"><span><i class="icon">⏱️</i></span><span class="nav-text">Focus Timer</span></a></li>
+                    <li><a href="updated_dashboard_no_timer.html"><span><i class="icon">⏱️</i></span><span class="nav-text">Exam Checklist</span></a></li>
+
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" class="profile-link">
+                    <img src="https://i.pravatar.cc/40?img=12" alt="User Profile" class="profile-img">
+                    <span class="nav-text">John Doe</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <div class="time-date">
+                    <span id="currentTime">10:47 AM</span>
+                    <span id="currentDate">Jun 22, 2025</span>
+                </div>
+                <div class="profile-section">
+                    <button class="notification-btn" aria-label="Notifications">🔔</button>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profile-btn" aria-label="Open user menu">
+                            <span>JD</span>
+                        </button>
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <div class="dropdown-header">
+                                <p>John Doe</p>
+                            </div>
+                            <ul class="dropdown-list">
+                                <li><button id="logout-btn">Logout</button></li>
+                                <li><button id="delete-profile-btn" class="danger">Delete Profile</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="dashboard-view">
+                <section class="widgets-grid">
+                    <div class="widget greeting-card">
+                        <h2>Good Morning, John!</h2>
+                        <p>You have <strong>0 tasks</strong> due today.</p>
+                    </div>
+                    <div class="widget quick-add-task">
+                        <h3>Add a Task</h3>
+                        <div class="input-group">
+                            <input type="text" placeholder="What's next on your plate?">
+                            <button class="add-btn" aria-label="Add task">+</button>
+                        </div>
+                        <div class="quick-options">
+                            <button><span>📅</span> Subject</button>
+                            <button><span>✅</span> Today</button>
+                            <button><span>➡️</span> Tomorrow</button>
+                            <button><span>🗓️</span> Custom Date</button>
+                            <button><span>⏰</span> Time</button>
+                        </div>
+                    </div>
+                    <div class="widget upcoming-exams">
+                        <div class="widget-header">
+                            <h3>Upcoming Exams</h3>
+                            <a href="#">View All</a>
+                        </div>
+                        <div class="exam-list">
+                            <p>No exams scheduled. Time to relax!</p>
+                        </div>
+                    </div>
+                    <div class="widget focus-timer-card">
+                        <div class="timer-options">
+                            <button class="time-btn" data-time="1500">25 min</button>
+                            <button class="time-btn" data-time="300">5 min</button>
+                            <button class="time-btn" data-time="600">10 min</button>
+                        </div>
+                        <div class="timer-display" id="timer-display">25:00</div>
+                        <p class="timer-label" id="timer-label">Focus</p>
+                        <div class="timer-controls">
+                            <button class="timer-control" id="reset-btn" aria-label="Reset timer">🔄</button>
+                            <button class="timer-control main-control" id="start-pause-btn" aria-label="Start timer">▶</button>
+                            <button class="timer-control" id="skip-btn" aria-label="Skip session">⏭️</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="tasks-view" style="display: none;">
+                <section class="widget quick-add-task">
+                    <h3>Add a New Task</h3>
+                    <div class="input-group">
+                        <input type="text" id="task-name-input" placeholder="e.g., Finish Math Homework">
+                        <button id="add-task-btn" class="add-btn" aria-label="Add task">+</button>
+                    </div>
+                    <div class="quick-options">
+                        <input type="text" id="task-subject-input" placeholder="Subject (optional)">
+                        <input type="date" id="task-date-input">
+                    </div>
+                </section>
+                
+                <section class="task-management widget">
+                    <div class="task-header">
+                        <h2>All Tasks</h2>
+                        <div class="filter-tabs">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="pending">Pending</button>
+                            <button class="filter-btn" data-filter="completed">Completed</button>
+                        </div>
+                    </div>
+                    <div class="task-list" id="task-list">
+                        <!-- Tasks will be dynamically inserted here -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 
