@@ -485,4 +485,290 @@ body {
     .sidebar-nav ul { display: flex; }
     .sidebar-footer { display: none; }
     .main-content { padding: 1rem; }
+}
+/* --- Calendar Styles --- */
+.styled-calendar-grid {
+  margin-bottom: 1.2rem;
+  background: #f8fafc;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px #0001;
+  padding: 1rem;
+}
+.styled-calendar-grid > div {
+  margin-bottom: 0.5rem;
+}
+.styled-calendar-grid .grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.styled-calendar-grid .grid > div {
+  background: #e0e7ef;
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-weight: 500;
+  font-size: 1rem;
+}
+.styled-calendar-grid .grid > div:hover {
+  background: #38bdf8;
+  color: #fff;
+}
+.styled-calendar-grid .grid > .has-event {
+  background: #bae6fd;
+  color: #0369a1;
+  font-weight: bold;
+}
+#calendar-event-modal {
+  min-width: 320px;
+  max-width: 90vw;
+  border: 2px solid #38bdf8;
+}
+#calendar-event-modal h4 {
+  margin-bottom: 0.7rem;
+}
+#calendar-event-form input {
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  border: 1.5px solid #e2e8f0;
+  font-size: 1rem;
+}
+#calendar-event-form button {
+  background: #38bdf8;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+#calendar-event-form button:hover {
+  background: #0ea5e9;
+}
+#calendar-modal-event-list {
+  margin-top: 1rem;
+  padding-left: 1rem;
+}
+#calendar-modal-event-list li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#calendar-modal-event-list button {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.upcoming-events-section {
+  background: #f1f5f9;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 4px #0001;
+}
+.upcoming-events-section h4 {
+  margin-bottom: 0.5rem;
+  color: #0369a1;
+}
+#upcoming-events-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+#upcoming-events-list li {
+  margin-bottom: 0.3rem;
+  font-size: 1rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+#upcoming-events-list .event-date {
+  color: #0ea5e9;
+  font-weight: 500;
+}
+
+/* --- Timer Styles --- */
+.styled-timer-card {
+  background: linear-gradient(135deg, #70c5f3 0%, #f0fdfa 100%);
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px #0ea5e933;
+  padding: 2rem 2.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.styled-timer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.timer-form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.styled-timer-form input {
+  padding: 0.7rem 1rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid #e2e8f0;
+  font-size: 1.1rem;
+  flex: 1;
+  min-width: 120px;
+}
+.timer-set-btn {
+  background: #38bdf8;
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.timer-set-btn:hover {
+  background: #0ea5e9;
+}
+.timer-display-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+.timer-display-icon {
+  font-size: 2.5rem;
+  color: #0ea5e9;
+  background: #fff;
+  border-radius: 50%;
+  padding: 0.7rem;
+  box-shadow: 0 1px 6px #0ea5e922;
+}
+.timer-display-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.timer-display {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0369a1;
+}
+.timer-label {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-top: 0.2rem;
+}
+.styled-timer-controls {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.styled-timer-controls .timer-control {
+  background: #f1f5f9;
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.5rem;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.styled-timer-controls .timer-control:hover {
+  background: #bae6fd;
+}
+
+/* --- AI For Doubts Styles --- */
+.ai-doubts-card {
+  background: #f8fafc;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 12px #0ea5e933;
+  padding: 2rem 2.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 500px;
+}
+.ai-chat-history {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 1.2rem;
+  padding: 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 350px;
+}
+.ai-chat-bubble {
+  max-width: 80%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 1.2rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  box-shadow: 0 1px 4px #0001;
+  word-break: break-word;
+}
+.ai-chat-bubble.user {
+  background: #bae6fd;
+  color: #0369a1;
+  align-self: flex-end;
+  border-bottom-right-radius: 0.3rem;
+}
+.ai-chat-bubble.ai {
+  background: #e0e7ef;
+  color: #334155;
+  align-self: flex-start;
+  border-bottom-left-radius: 0.3rem;
+}
+.ai-chat-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+}
+#ai-chat-input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid #e2e8f0;
+  font-size: 1.1rem;
+}
+#ai-chat-submit {
+  background: #38bdf8;
+  color: #fff;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#ai-chat-submit:hover {
+  background: #0ea5e9;
+}
+.ai-chat-loading {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.ai-chat-loading .dot {
+  animation: ai-dot-blink 1.2s infinite;
+  opacity: 0.5;
+}
+.ai-chat-loading .dot:nth-child(2) { animation-delay: 0.2s; }
+.ai-chat-loading .dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes ai-dot-blink {
+  0%, 80%, 100% { opacity: 0.5; }
+  40% { opacity: 1; }
 } 

@@ -442,7 +442,7 @@ body {
     max-width: 1100px;
 }
 .benefit-card {
-    background: #fff;
+    background: rgba(255,255,255,0.9);
     border-radius: 1.5rem;
     box-shadow: 0 4px 24px rgba(58, 134, 255, 0.07),
         0 1.5px 8px rgba(163, 216, 244, 0.08);

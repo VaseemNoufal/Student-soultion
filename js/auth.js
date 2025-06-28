@@ -56,7 +56,7 @@ loginForm.addEventListener("submit", async (e) => {
     const message = document.getElementById("login-message");
     message.textContent = "";
     try {
-        const res = await fetch("http://localhost:8000/api/v1/auth/token/", {
+        const res = await fetch("http://85.215.229.78:8447/api/v1/auth/token/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password }),
@@ -71,7 +71,7 @@ loginForm.addEventListener("submit", async (e) => {
             message.textContent = "Login successful!";
             message.className = "form-message success";
 
-            // window.location.href = '/dashboard.html';
+            window.location.href = '/dashboard.html';
         } else {
             let error_text = "";
             for (key in data) {
@@ -97,7 +97,7 @@ signupForm.addEventListener("submit", async (e) => {
     const message = document.getElementById("signup-message");
     message.textContent = "";
     try {
-        const res = await fetch("http://localhost:8000/api/v1/auth/register/", {
+        const res = await fetch("http://85.215.229.78:8447/api/v1/auth/register/", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

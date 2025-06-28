@@ -22,17 +22,18 @@
                 <ul>
                     <li><a href="#" class="active" id="nav-dashboard"><span><i class="icon">🏠</i></span><span class="nav-text">Dashboard</span></a></li>
                     <li><a href="#" id="nav-tasks"><span><i class="icon">📝</i></span><span class="nav-text">Tasks</span></a></li>
-                    <li><a href="#"><span><i class="icon">📅</i></span><span class="nav-text">Calendar</span></a></li>
-                    <li><a href="#"><span><i class="icon">📚</i></span><span class="nav-text">Activities</span></a></li>
-                    <li><a href="#"><span><i class="icon">⏱️</i></span><span class="nav-text">Focus Timer</span></a></li>
-                    <li><a href="updated_dashboard_no_timer.html"><span><i class="icon">⏱️</i></span><span class="nav-text">Exam Checklist</span></a></li>
-
+                    <li><a href="#" id="nav-calendar"><span><i class="icon">📅</i></span><span class="nav-text">Calendar</span></a></li>
+                    <li><a href="#" id="nav-ai-doubts"><span><i class="icon">📚</i></span><span class="nav-text">AI For Doubts</span></a></li>
+                    <li><a href="#" id="nav-focus-timer"><span><i class="icon">⏱️</i></span><span class="nav-text">Focus Timer</span></a></li>
+                    <li><a href="updated_dashboard_no_timer.html"><span><i class="icon">📋</i></span><span class="nav-text">Exam Checklist</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
                 <a href="#" class="profile-link">
-                    <img src="https://i.pravatar.cc/40?img=12" alt="User Profile" class="profile-img">
-                    <span class="nav-text">John Doe</span>
+                    <button class="profile-btn">
+                        <span>JD</span>
+                    </button>
+                    <span class="nav-text">John Doe</span>
                 </a>
             </div>
         </aside>
@@ -46,7 +47,7 @@
                 <div class="profile-section">
                     <button class="notification-btn" aria-label="Notifications">🔔</button>
                     <div class="profile-dropdown">
-                        <button class="profile-btn" id="profile-btn" aria-label="Open user menu">
+                        <button class="profile-btn idk" id="profile-btn" aria-label="Open user menu">
                             <span>JD</span>
                         </button>
                         <div class="dropdown-menu" id="dropdown-menu">
@@ -133,6 +134,58 @@
                     <div class="task-list" id="task-list">
                         <!-- Tasks will be dynamically inserted here -->
                     </div>
+                </section>
+            </div>
+
+            <div id="focus-timer-view" style="display: none;">
+                <section class="widget focus-timer-card styled-timer-card">
+                    <h3><span style="font-size:1.5rem;vertical-align:middle;">⏰</span>Focus Timer</h3>
+                    <form id="simple-timer-form" class="styled-timer-form">
+                        <div class="timer-form-row">
+                            <input type="number" id="simple-timer-minutes" placeholder="Minutes" min="1" required>
+                            <button type="submit" class="timer-set-btn">Start Timer</button>
+                            <button type="button" id="simple-timer-reset" class="timer-set-btn" style="background:#f87171;">Reset</button>
+                        </div>
+                    </form>
+                    <div class="timer-display-section">
+                        <div class="timer-display-icon">⏳</div>
+                        <div class="timer-display-info">
+                            <div class="timer-display" id="simple-timer-display">00:00</div>
+                            <p class="timer-label" id="simple-timer-label">Focus</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="calendar-view" style="display: none;">
+                <section class="widget calendar-card">
+                    <h3>Calendar</h3>
+                    <div id="calendar-grid" class="styled-calendar-grid"></div>
+                    <div id="upcoming-events-section" class="upcoming-events-section">
+                        <h4>Upcoming Events</h4>
+                        <ul id="upcoming-events-list"></ul>
+                    </div>
+                    <div id="calendar-event-modal" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:1.5rem 2rem;border-radius:1rem;box-shadow:0 2px 16px #0002;z-index:1000;min-width:320px;">
+                        <h4 id="calendar-modal-date"></h4>
+                        <form id="calendar-event-form" style="display:flex;gap:0.5rem;align-items:center;">
+                            <input type="text" id="calendar-event-title" placeholder="Event Title" required style="flex:1;">
+                            <button type="submit">Add</button>
+                            <button type="button" id="calendar-modal-close">Cancel</button>
+                        </form>
+                        <ul id="calendar-modal-event-list"></ul>
+                    </div>
+                </section>
+            </div>
+
+            <div id="ai-doubts-view" style="display: none;">
+                <section class="widget ai-doubts-card">
+                    <h3><span style="font-size:1.5rem;vertical-align:middle;">🧠</span> AI For Doubts</h3>
+                    <div id="ai-chat-history" class="ai-chat-history"></div>
+                    <form id="ai-chat-form" class="ai-chat-form">
+                        <input type="text" id="ai-chat-input" placeholder="Type your doubt here..." autocomplete="off" required>
+                        <button type="submit" id="ai-chat-submit">Send</button>
+                    </form>
+                    <div id="ai-chat-loading" class="ai-chat-loading" style="display:none;">Thinking<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
                 </section>
             </div>
         </main>
