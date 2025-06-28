@@ -403,7 +403,8 @@
                   recommendationsDiv.innerHTML = `
                       <div class="recommendations-header">
                           <div class="recommendations-title">Recommended Subjects</div>
-                          <div class="recommendations-subtitle">Select subjects to start building your study plan</div>
+                           <div class="recommendations-subtitle" style='display: flex; justify-content: center; text-align: center; color:blue; font-weight:600;'>Select subjects to start building your study plan</div>
+                          <br/>
                       </div>
                       <div class="recommendations-grid">
                           ${recommendedSubjects.map(subject => `
