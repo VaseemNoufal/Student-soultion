@@ -23,9 +23,9 @@
                     <li><a href="#" class="active" id="nav-dashboard"><span><i class="icon">🏠</i></span><span class="nav-text">Dashboard</span></a></li>
                     <li><a href="#" id="nav-tasks"><span><i class="icon">📝</i></span><span class="nav-text">Tasks</span></a></li>
                     <li><a href="#" id="nav-calendar"><span><i class="icon">📅</i></span><span class="nav-text">Calendar</span></a></li>
-                    <li><a href="#" id="nav-ai-doubts"><span><i class="icon">📚</i></span><span class="nav-text">AI For Doubts</span></a></li>
                     <li><a href="#" id="nav-focus-timer"><span><i class="icon">⏱️</i></span><span class="nav-text">Focus Timer</span></a></li>
-                    <li><a href="updated_dashboard_no_timer.html"><span><i class="icon">📋</i></span><span class="nav-text">Exam Checklist</span></a></li>
+                    <li><a href="#" id="nav-exam-checklist"><span><i class="icon">📋</i></span><span class="nav-text">Exam Checklist</span></a></li>
+                    <li><a href="#" id="nav-timetable"><span><i class="icon">📆</i></span><span class="nav-text">Timetable</span></a></li>
                 </ul>
             </nav>
             <div class="sidebar-footer">
@@ -177,15 +177,180 @@
                 </section>
             </div>
 
-            <div id="ai-doubts-view" style="display: none;">
-                <section class="widget ai-doubts-card">
-                    <h3><span style="font-size:1.5rem;vertical-align:middle;">🧠</span> AI For Doubts</h3>
-                    <div id="ai-chat-history" class="ai-chat-history"></div>
-                    <form id="ai-chat-form" class="ai-chat-form">
-                        <input type="text" id="ai-chat-input" placeholder="Type your doubt here..." autocomplete="off" required>
-                        <button type="submit" id="ai-chat-submit">Send</button>
+            <div id="exam-checklist-view" style="display: none;">
+                <!-- Hero Section -->
+                <div class="exam-hero-section">
+                    <div class="exam-hero-content">
+                        <h1 class="exam-hero-title">📚 Smart Exam Planner</h1>
+                        <p class="exam-hero-subtitle">Organize your studies, track progress, and ace your exams with our intelligent study planner</p>
+                        <div class="exam-hero-stats">
+                            <div class="hero-stat">
+                                <span class="hero-stat-number" id="totalSubjects">0</span>
+                                <span class="hero-stat-label">Subjects</span>
+                            </div>
+                            <div class="hero-stat">
+                                <span class="hero-stat-number" id="completedChapters">0</span>
+                                <span class="hero-stat-label">Completed</span>
+                            </div>
+                            <div class="hero-stat">
+                                <span class="hero-stat-number" id="daysRemaining">-</span>
+                                <span class="hero-stat-label">Days Left</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="exam-hero-actions">
+                        <button id="addSubjectBtn" class="hero-add-btn">
+                            <span class="hero-btn-icon">➕</span>
+                            <span class="hero-btn-text">Add New Subject</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="exam-main-content">
+                    <!-- Quick Actions Bar -->
+                    <div class="quick-actions-bar">
+                        <div class="quick-actions-left">
+                            <h3 class="section-title">Your Study Plan</h3>
+                            <p class="section-subtitle">Manage your subjects and track your progress</p>
+                        </div>
+                    </div>
+
+                    <!-- Subjects Grid -->
+                    <div class="subjects-container" id="subjectsGrid">
+                        <!-- Subjects will be dynamically added here -->
+                    </div>
+
+                    <!-- Empty State -->
+                    <div class="empty-state" id="emptyState" style="display: none;">
+                        <div class="empty-state-icon">🎯</div>
+                        <h3 class="empty-state-title">Ready to Start Your Exam Prep?</h3>
+                        <p class="empty-state-description">Add your first subject to begin creating your personalized study plan</p>
+                        <button class="empty-state-btn" onclick="openModal()">
+                            <span>🚀</span>
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modern Subject Modal -->
+                <div id="subjectModal" class="modern-modal" style="display: none;">
+                    <div class="modal-overlay"></div>
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <div class="modal-title-section">
+                                <h2 class="modal-title">Add New Subject</h2>
+                                <p class="modal-subtitle">Set up your study plan for this subject</p>
+                            </div>
+                            <button class="modal-close-btn" onclick="closeModal()">
+                                <span>✕</span>
+                            </button>
+                        </div>
+                        
+                        <form id="subjectForm" class="modal-form">
+                            <div class="form-section">
+                                <label class="form-label">Subject Name *</label>
+                                <input type="text" id="modalSubjectName" class="form-input" placeholder="e.g., Mathematics, Physics" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-section">
+                                    <label class="form-label">Class *</label>
+                                    <select id="modalClassName" class="form-select" required>
+                                        <option value="">Select Class</option>
+                                        <option value="Class 8">Class 8</option>
+                                        <option value="Class 9">Class 9</option>
+                                        <option value="Class 10">Class 10</option>
+                                        <option value="Class 11">Class 11</option>
+                                        <option value="Class 12">Class 12</option>
+                                    </select>
+                                </div>
+                                <div class="form-section">
+                                    <label class="form-label">Exam Date *</label>
+                                    <input type="date" id="modalExamDate" class="form-input" required>
+                                </div>
+                            </div>
+
+                            <div class="form-section">
+                                <label class="form-label">Study Notes (Optional)</label>
+                                <textarea id="modalNotes" class="form-textarea" placeholder="Add any notes or reminders for this subject..."></textarea>
+                            </div>
+
+                            <div class="modal-actions">
+                                <button type="button" class="btn-secondary" onclick="closeModal()">Cancel</button>
+                                <button type="submit" class="btn-primary">
+                                    <span>✨</span>
+                                    Create Subject
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Chapter Modal -->
+                <div id="chapterModal" class="modern-modal" style="display: none;">
+                    <div class="modal-overlay"></div>
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <div class="modal-title-section">
+                                <h2 class="modal-title">Add Chapter</h2>
+                                <p class="modal-subtitle" id="chapterModalSubtitle">Add a new chapter to your study plan</p>
+                            </div>
+                            <button class="modal-close-btn" onclick="closeChapterModal()">
+                                <span>✕</span>
+                            </button>
+                        </div>
+                        
+                        <form id="chapterForm" class="modal-form">
+                            <div class="form-section">
+                                <label class="form-label">Chapter Name *</label>
+                                <input type="text" id="chapterName" class="form-input" placeholder="e.g., Introduction to Trigonometry" required>
+                            </div>
+
+                            <div class="modal-actions">
+                                <button type="button" class="btn-secondary" onclick="closeChapterModal()">Cancel</button>
+                                <button type="submit" class="btn-primary">
+                                    <span>📝</span>
+                                    Add Chapter
+                                </button>
+                            </div>
                     </form>
-                    <div id="ai-chat-loading" class="ai-chat-loading" style="display:none;">Thinking<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></div>
+                    </div>
+                </div>
+
+                <!-- Success Modal -->
+                <div id="successModal" class="modern-modal" style="display: none;">
+                    <div class="modal-overlay"></div>
+                    <div class="modal-container success-modal">
+                        <div class="success-content">
+                            <div class="success-icon">🎉</div>
+                            <h2 class="success-title">Congratulations!</h2>
+                            <p class="success-message" id="successMessage">You've completed all chapters for this subject!</p>
+                            <button class="btn-primary" onclick="closeSuccessModal()">
+                                <span>✨</span>
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="timetable-view" style="display: none;">
+                <section class="widget timetable-card">
+                    <div class="timetable-header">
+                        <h3><span style="font-size:1.5rem;vertical-align:middle;">📆</span> Create Timetable</h3>
+                        <input type="text" id="timetableName" class="form-input" placeholder="Enter timetable name..." style="margin-top:1rem;max-width:350px;">
+                    </div>
+                    <div class="timetable-table-section">
+                        <table id="timetableTable" class="timetable-table"></table>
+                        <div class="timetable-controls">
+                            <button id="addPeriodBtn" class="btn-primary timetable-btn">+ Add Period</button>
+                            <button id="addDayBtn" class="btn-secondary timetable-btn">+ Add Day</button>
+                        </div>
+                    </div>
+                    <div style="margin-top:2rem;text-align:center;">
+                        <button id="submitTimetableBtn" class="btn-primary" style="font-size:1.1rem;padding:0.8rem 2.5rem;">Submit Timetable</button>
+                    </div>
                 </section>
             </div>
         </main>
