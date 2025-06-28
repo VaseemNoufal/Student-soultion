@@ -20,6 +20,7 @@
             color: #333;
             display: flex;
             min-height: 100vh;
+            scroll-behavior: smooth;
         }
 
         /* Sidebar styles */
@@ -29,11 +30,11 @@
             background: linear-gradient(180deg, #5A65EA 0%, #9C4BE7 100%);
             color: white;
             padding: 32px 20px;
-            box-sizing: border-box;
             position: fixed;
             box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.06);
             display: flex;
             flex-direction: column;
+            z-index: 1000;
         }
 
         .sidebar h2 {
@@ -628,138 +629,157 @@
             box-shadow: 0px 8px 20px rgba(90, 101, 234, 0.3);
         }
 
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 60px;
-                padding: 20px 10px;
-            }
-
-            .sidebar h2 {
-                font-size: 20px;
-                margin-bottom: 32px;
-            }
-
-            .sidebar li span {
-                display: none;
-            }
-
-            .sidebar .user-profile span {
-                display: none;
-            }
-
-            .main {
-                margin-left: 60px;
-                padding: 20px;
-            }
-
-            .top-bar .time {
-                font-size: 24px;
-            }
-
-            .subjects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .box {
-                padding: 20px;
-            }
-
-            .title {
-                font-size: 24px;
-            }
-
-            .stat-value {
-                font-size: 24px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main {
-                margin-left: 0;
-                padding: 16px;
-            }
-
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .top-bar {
-                flex-direction: column;
-                gap: 16px;
-                text-align: center;
-            }
-
-            .actions-bar {
-                flex-direction: column;
-            }
-
-            .modal-content {
-                margin: 20px;
-                padding: 20px;
-            }
-        }
-
-        /* Additional styles for existing components */
-        .recommendations-container {
-            background: white;
-            border-radius: 20px;
-            padding: 32px;
-            margin: 32px 0;
-            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.06);
-        }
-
-        .recommendations-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .recommendations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        /* Subject Details Modal */
+        .subject-details-content {
+            display: flex;
+            flex-direction: column;
             gap: 24px;
         }
 
-        .recommendation-card {
-            background: white;
-            border-radius: 20px;
-            padding: 24px;
+        .subject-info-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(90, 101, 234, 0.1);
-            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.06);
+            gap: 16px;
         }
 
-        .recommendation-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.1);
+        .subject-icon-large {
+            font-size: 48px;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #5A65EA, #9C4BE7);
+            color: white;
+            border-radius: 50%;
         }
 
-        .recommendation-icon {
-            font-size: 32px;
-            margin-bottom: 16px;
+        .subject-description {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
         }
 
-        .recommendation-name {
+        .class-selection-section h3,
+        .syllabus-selection-section h3 {
             font-size: 18px;
             font-weight: 600;
             color: #333;
+            margin-bottom: 16px;
+        }
+
+        .class-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .class-option {
+            padding: 16px;
+            border-radius: 12px;
+            background: #f8f9fc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .class-option:hover {
+            background: #e9ecef;
+        }
+
+        .class-option.selected {
+            background: linear-gradient(135deg, rgba(90, 101, 234, 0.1), rgba(156, 75, 231, 0.1));
+            border: 1px solid #5A65EA;
+        }
+
+        .class-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #5A65EA;
             margin-bottom: 8px;
         }
 
-        .recommendation-desc {
+        .class-label {
             font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .class-desc {
+            font-size: 14px;
             color: #666;
-            font-weight: 400;
+        }
+
+        .syllabus-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .syllabus-option {
+            padding: 16px;
+            border-radius: 12px;
+            background: #f8f9fc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .syllabus-option:hover {
+            background: #e9ecef;
+        }
+
+        .syllabus-option.selected {
+            background: linear-gradient(135deg, rgba(90, 101, 234, 0.1), rgba(156, 75, 231, 0.1));
+            border: 1px solid #5A65EA;
+        }
+
+        .syllabus-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .syllabus-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .syllabus-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .chapters-preview {
+            margin-top: 24px;
+        }
+
+        .chapters-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .chapter-item {
+            padding: 12px;
+            background: #f8f9fc;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .chapter-item i {
+            color: #5A65EA;
         }
 
         /* Alert modal */
@@ -913,42 +933,133 @@
             background: #e9ecef;
         }
 
-        /* Smooth scrolling */
-        body {
-            scroll-behavior: smooth;
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+                padding: 20px 10px;
+            }
+
+            .sidebar h2 {
+                font-size: 20px;
+                margin-bottom: 32px;
+            }
+
+            .sidebar li span {
+                display: none;
+            }
+
+            .sidebar .user-profile span {
+                display: none;
+            }
+
+            .main {
+                margin-left: 60px;
+                padding: 20px;
+            }
+
+            .top-bar .time {
+                font-size: 24px;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .box {
+                padding: 20px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .class-options,
+            .syllabus-options {
+                grid-template-columns: 1fr;
+            }
+
+            .chapters-list {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Iframe styling */
-        iframe {
-            border-radius: 20px;
+        @media (max-width: 480px) {
+            .main {
+                margin-left: 0;
+                padding: 16px;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .actions-bar {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .btn-cancel,
+            .btn-confirm {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2><i class="fas fa-graduation-cap"></i> Focusly</h2>
-        <ul>
-            <li class="active">
-                <i class="fas fa-tachometer-alt"></i>
-                <span>Dashboard</span>
-            </li>
-            <li>
-                <i class="fas fa-tasks"></i>
-                <span>Tasks</span>
-            </li>
-            <li>
-                <i class="fas fa-calendar-alt"></i>
-                <span>Calendar</span>
-            </li>
-            <li>
-                <i class="fas fa-chart-line"></i>
-                <span>Activities</span>
-            </li>
-            <li>
-                <i class="fas fa-clock"></i>
-                <span>Focus Timer</span>
-            </li>
-        </ul>
+       <ul>
+    <li class="active">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>Dashboard</span>
+    </li>
+    <li>
+        <i class="fas fa-tasks"></i>
+        <span>Tasks</span>
+    </li>
+    <li>
+        <i class="fas fa-calendar-alt"></i>
+        <span>Calendar</span>
+    </li>
+    <li>
+        <i class="fas fa-chart-line"></i>
+        <span>Activities</span>
+    </li>
+    <li>
+        <a href="AI DOBUT.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 12px;">
+            <i class="fas fa-robot"></i>
+            <span>AI Assistant</span>
+        </a>
+    </li>
+    <li>
+        <i class="fas fa-clock"></i>
+        <span>Focus Timer</span>
+    </li>
+</ul>
         <div class="user-profile">
             <img src="https://i.pravatar.cc/40" alt="User Avatar" />
             <span>John Doe</span>
@@ -1128,22 +1239,265 @@
                         <button class="congrats-btn" onclick="closeCongratsModal()">OK</button>
                       </div>
                     </div>
-            
                 </div>
             </div>
         </div>
     </div>
-    <script src="js/script.js"></script>
+
     <script>
-    function updateTimeAndDate() {
-        const now = new Date();
-        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
-        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('currentTime').textContent = now.toLocaleTimeString([], timeOptions);
-        document.getElementById('currentDate').textContent = now.toLocaleDateString([], dateOptions);
-    }
-    updateTimeAndDate();
-    setInterval(updateTimeAndDate, 1000);
+        // Sample data for subjects
+        let subjects = [];
+        let selectedClass = '';
+        let selectedSyllabus = '';
+
+        // DOM elements
+        const subjectsGrid = document.getElementById('subjectsGrid');
+        const totalSubjectsElement = document.getElementById('totalSubjects');
+        const addSubjectBtn = document.getElementById('addSubjectBtn');
+        const subjectModal = document.getElementById('subjectModal');
+        const subjectDetailsModal = document.getElementById('subjectDetailsModal');
+        const alertModal = document.getElementById('alertModal');
+        const congratsModal = document.getElementById('congratsModal');
+        const subjectForm = document.getElementById('subjectForm');
+
+        // Initialize the app
+        function init() {
+            updateTimeAndDate();
+            loadSubjects();
+            setupEventListeners();
+        }
+
+        // Update time and date
+        function updateTimeAndDate() {
+            const now = new Date();
+            const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
+            const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('currentTime').textContent = now.toLocaleTimeString([], timeOptions);
+            document.getElementById('currentDate').textContent = now.toLocaleDateString([], dateOptions);
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            addSubjectBtn.addEventListener('click', openModal);
+            subjectForm.addEventListener('submit', handleAddSubject);
+        }
+
+        // Load subjects from localStorage
+        function loadSubjects() {
+            const savedSubjects = localStorage.getItem('subjects');
+            if (savedSubjects) {
+                subjects = JSON.parse(savedSubjects);
+                renderSubjects();
+            }
+            updateStats();
+        }
+
+        // Save subjects to localStorage
+        function saveSubjects() {
+            localStorage.setItem('subjects', JSON.stringify(subjects));
+        }
+
+        // Update statistics
+        function updateStats() {
+            totalSubjectsElement.textContent = subjects.length;
+        }
+
+        // Render subjects to the grid
+        function renderSubjects() {
+            subjectsGrid.innerHTML = '';
+            
+            if (subjects.length === 0) {
+                subjectsGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                        <h3 style="color: #666; margin-bottom: 16px;">No subjects added yet</h3>
+                        <p style="color: #999;">Click the "Add Subject" button to get started</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            subjects.forEach((subject, index) => {
+                const completedChapters = subject.chapters.filter(chapter => chapter.completed).length;
+                const progressPercentage = Math.round((completedChapters / subject.chapters.length) * 100);
+                
+                const subjectCard = document.createElement('div');
+                subjectCard.className = 'subject-card';
+                subjectCard.innerHTML = `
+                    <div class="subject-header">
+                        <div class="subject-title">${subject.name}</div>
+                        <div class="chapter-badge">${completedChapters}/${subject.chapters.length} chapters</div>
+                    </div>
+                    <div class="exam-info">
+                        <div>${subject.class} • ${subject.syllabus}</div>
+                        <div class="countdown">${subject.examDate ? 'Exam in 14 days' : 'No exam date set'}</div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <div class="progress-label">Progress</div>
+                            <div class="progress-percentage">${progressPercentage}%</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                        </div>
+                    </div>
+                    <div class="actions-bar">
+                        <button class="action-btn btn-primary" onclick="startStudying(${index})">
+                            <i class="fas fa-book-open"></i> Study Now
+                        </button>
+                        <button class="action-btn btn-secondary" onclick="editSubject(${index})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </div>
+                `;
+                
+                subjectsGrid.appendChild(subjectCard);
+            });
+        }
+
+        // Open the add subject modal
+        function openModal() {
+            subjectModal.style.display = 'block';
+        }
+
+        // Close the modal
+        function closeModal() {
+            subjectModal.style.display = 'none';
+            subjectForm.reset();
+        }
+
+        // Open subject details modal
+        function openDetailsModal() {
+            subjectDetailsModal.style.display = 'block';
+        }
+
+        // Close subject details modal
+        function closeDetailsModal() {
+            subjectDetailsModal.style.display = 'none';
+        }
+
+        // Open alert modal
+        function openAlertModal(message) {
+            document.getElementById('alertMessage').textContent = message;
+            alertModal.style.display = 'block';
+        }
+
+        // Close alert modal
+        function closeAlertModal() {
+            alertModal.style.display = 'none';
+        }
+
+        // Open congrats modal
+        function openCongratsModal() {
+            congratsModal.style.display = 'flex';
+        }
+
+        // Close congrats modal
+        function closeCongratsModal() {
+            congratsModal.style.display = 'none';
+        }
+
+        // Handle add subject form submission
+        function handleAddSubject(e) {
+            e.preventDefault();
+            
+            const subjectName = document.getElementById('modalSubjectName').value;
+            const className = document.getElementById('modalClassName').value;
+            const syllabus = document.getElementById('modalSyllabus').value;
+            const chaptersCount = parseInt(document.getElementById('modalChapters').value);
+            
+            if (!subjectName || !className || !syllabus || !chaptersCount) {
+                return;
+            }
+            
+            const newSubject = {
+                id: Date.now(),
+                name: subjectName,
+                class: className,
+                syllabus: syllabus,
+                chapters: Array.from({ length: chaptersCount }, (_, i) => ({
+                    number: i + 1,
+                    name: `Chapter ${i + 1}`,
+                    completed: false
+                })),
+                examDate: null
+            };
+            
+            subjects.push(newSubject);
+            saveSubjects();
+            renderSubjects();
+            updateStats();
+            closeModal();
+        }
+
+        // Select class in details modal
+        function selectClass(className) {
+            selectedClass = className;
+            document.querySelectorAll('.class-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.closest('.class-option').classList.add('selected');
+        }
+
+        // Select syllabus in details modal
+        function selectSyllabus(syllabus) {
+            selectedSyllabus = syllabus;
+            document.querySelectorAll('.syllabus-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.target.closest('.syllabus-option').classList.add('selected');
+        }
+
+        // Add subject from details modal
+        function addSubjectFromDetails() {
+            if (!selectedClass || !selectedSyllabus) {
+                openAlertModal('Please select both class and syllabus');
+                return;
+            }
+            
+            // Here you would typically get the subject name from the modal
+            // For now, we'll use a placeholder
+            const subjectName = "New Subject";
+            
+            const newSubject = {
+                id: Date.now(),
+                name: subjectName,
+                class: selectedClass,
+                syllabus: selectedSyllabus,
+                chapters: Array.from({ length: 10 }, (_, i) => ({
+                    number: i + 1,
+                    name: `Chapter ${i + 1}`,
+                    completed: false
+                })),
+                examDate: null
+            };
+            
+            subjects.push(newSubject);
+            saveSubjects();
+            renderSubjects();
+            updateStats();
+            closeDetailsModal();
+        }
+
+        // Start studying a subject
+        function startStudying(index) {
+            const subject = subjects[index];
+            if (subject.chapters.every(chapter => chapter.completed)) {
+                openCongratsModal();
+            } else {
+                alert(`Starting study session for ${subject.name}`);
+                // Here you would typically navigate to a study page or open a study modal
+            }
+        }
+
+        // Edit a subject
+        function editSubject(index) {
+            const subject = subjects[index];
+            alert(`Editing ${subject.name}`);
+            // Here you would typically open an edit modal with the subject's details
+        }
+
+        // Initialize the app when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
