@@ -164,6 +164,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Due Task Count
+    const dueTaskCount = document.getElementById("due-task-count");
+
+    const today = new Date().toISOString().split("T")[0];
+
+    fetch(
+        `http://85.215.229.78:8447/api/v1/homeworks/manage/?due_date=${today}`,
+        {
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+            },
+        }
+    )
+        .then((response) => response.json())
+        .then((data) => {
+            const count = data?.data?.length || 0;
+            dueTaskCount.textContent = count;
+        })
+        .catch((error) => {
+            console.error("Error fetching due tasks:", error);
+            dueTaskCount.textContent = "0";
+        });
+
     // Focus Timer
     const timerDisplay = document.getElementById("timer-display");
     const timerLabel = document.getElementById("timer-label");
